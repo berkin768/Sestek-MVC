@@ -1,2 +1,2 @@
-# Sestek-MVC
-Summer Internship Project
+# MVC-Sestek
+Sestek Internship Project
