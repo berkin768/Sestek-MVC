@@ -1,0 +1,138 @@
+﻿@model PhoneDex.EntityFramework.Entities.Contact
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>      
+        <link href="~/Content/dataTables.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+     
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container" style="padding-left: 0px; margin-left: 0px">
+                <div class="navbar-brand" style="padding-top: 7px; padding-left: 0px; margin-left: 0px">
+                    <img alt="Logo" src="~/images/sestek.png" style="max-height: 55px; float: left;">
+                    <h3 style="color: rgb(215, 215, 215); display: inline-block; float: left; font-size: 25px; margin-bottom: 0; margin-top: 10px; text-shadow: 1px 1px 2px #464646, 1px 1px 4px #545454;">PhoneDex</h3>
+                </div>
+            </div>
+        </div>
+
+    <h4 id="person" style="color: #676467; font-size: 18px;">Kişi</h4>
+    <div class="form-horizontal">
+
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.givenName, "Ad*", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.givenName, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.givenName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sn, "Soyad*", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sn, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.sn, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, "Ünvan", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.title, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.title, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.physicalDeliveryOfficeName, "Ofis", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.physicalDeliveryOfficeName, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.physicalDeliveryOfficeName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.telephoneNumber, "Dahili Telefon", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telephoneNumber, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.telephoneNumber, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mail, "E-Mail", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mail, new {htmlAttributes = new {@type = "email", @class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.mail, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mobile, "Cep Telefonu", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mobile, new {htmlAttributes = new {@type = "number", @class = "form-control", autocomplete = "off"}})
+                @Html.ValidationMessageFor(model => model.mobile, "", new {@class = "text-danger",})
+            </div>
+        </div>
+
+        <p>Doldurulması gerekilen alanlar * ile işaretlenmiştir</p>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               
+                @if (Model.isManual || Model.Id == 0)
+                {
+                    <button id="save" class="btn btn-success">Save</button>
+                }
+                else
+                {                 
+                 <div class="alert alert-dismissible alert-warning" style="display: inline-block; margin-left: -3%;">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>                   
+                        <h4>Uyarı!</h4>
+                        <p>Bu Kişi LDAP Verisi Olduğu İçin Düzenlenemez</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+        
+    <script>         
+        $("#save")
+            .click(function() {
+                if ($("#givenName").val() != null &&
+                    $("#sn").val() != null &&
+                    $("#givenName").val() != "" &&
+                    $("#sn").val() != "") {
+                    $.post("/Home/SaveContact",
+                        {
+                            Id: @Model.Id,
+                            givenName: $("#givenName").val(),
+                            sn: $("#sn").val(),
+                            title: $("#title").val(),
+                            physicalDeliveryOfficeName: $("#physicalDeliveryOfficeName").val(),
+                            telephoneNumber: $("#telephoneNumber").val(),
+                            mobile: $("#mobile").val(),
+                            mail: $("#mail").val()
+                        },
+                        function() {
+                            window.close();
+                            window.opener.location.reload(false);
+                        });
+                } else {
+                    alert("Oops, Bir Hata Oluştu");
+                }
+            });
+
+
+    </script>
+    </body>
+}

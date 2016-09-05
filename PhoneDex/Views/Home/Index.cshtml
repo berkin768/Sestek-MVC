@@ -1,0 +1,172 @@
+﻿@model IEnumerable<PhoneDex.EntityFramework.Entities.Contact>
+    
+@{
+        ViewBag.Title = "SESTEK | PhoneDex";
+}
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="UTF-8">              
+        <link href="~/Content/dataTables.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />   
+        <link href="~/Content/dataTables.buttons.css" rel="stylesheet" />       
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/Roboto.css" rel="stylesheet" />
+        <link href="~/Content/Oswald.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>     
+        <script src="~/Scripts/jquery.dataTables.min.js"></script>             
+        <script src="~/Scripts/dataTables.buttons.min.js"></script>        
+        <script src="~/Scripts/buttons.flash.min.js"></script>
+        <script src="~/Scripts/jszip.min.js"></script>
+        <script src="~/Scripts/pdfmake.min.js"></script>
+        <script src="~/Scripts/vfs_fonts.js"></script>
+        <script src="~/Scripts/buttons.html5.min.js"></script>
+        <script src="~/Scripts/buttons.print.min.js"></script>
+       
+
+        <SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+        </SCRIPT>
+        <style>
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Roboto';
+            }
+
+            p, div {
+                font-family: 'Roboto';
+            }
+
+            .topFrame {
+                margin: auto;
+                margin-bottom: 3%;
+                padding: 10px;
+                border: 2px solid #cccccc;
+                border-radius: 4px;
+                margin-top: 5%;
+            }
+
+            .button {
+                margin-top: 50px;
+            }
+
+            table {
+                margin-top: 100px;
+                font-family: 'Roboto';
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+
+            thead {
+                cursor: pointer;
+            }
+
+            #searchForm {
+                display: none;
+                margin-top: 25px;
+            }
+
+            .ajaxTable {
+                margin-left: -10%;
+            }
+
+            .text {
+                color: rgb(215, 215, 215);
+                display: inline-block;
+                margin-bottom: 0; margin-top: 12px; text-shadow: 1px 1px 2px #464646, 1px 1px 4px #545454;
+            }
+        </style>
+
+    </head>
+
+    <body>
+   
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" style="padding-left: 0px; margin-left: 0px; width: 100%">
+            <div class="navbar-brand" style="padding-top: 7px; padding-left: 0px; margin-left: 0px">
+                <img alt="Logo" src="~/images/sestek.png" style="max-height: 55px; float: left;">
+                <h3 class="text" style="float: left; font-size: 25px;">PhoneDex</h3>
+            </div>
+            <a id="logoutButton" data-value="@Request.RequestContext.HttpContext.Session["isInSestekDomain"]" class="btn btn-primary" style="float: right; margin-top: 7px; display: none">Çıkış</a>
+        </div>
+    </div>
+   
+    
+    <div id="topFrame" class="topFrame col-md-10 col-lg-10" style="width: 100%;">
+        
+        <div class="col-md-6 col-lg-3" id="isim">
+            <label class="control-label">Ad Soyad</label>
+            <input class="form-control" id="displayName" name="displayName" type="text"/>
+        </div>
+
+        <div class="col-md-6 col-lg-1" id="dahili">
+            <label class="control-label">Dahili Tel</label>
+            <input class="form-control" id="telephone" name="telephone" type="text"/>
+        </div>
+
+        <div class="col-md-6 col-lg-3" id="ünvan">
+            <label class="control-label" for="title">Ünvan</label>
+            <input class="form-control" id="title" name="title" type="text"/>
+        </div>
+
+        <div class="col-md-6 col-lg-2" id="ofis">
+            <label class="control-label" for="office" style="display: block">Ofis</label>
+            <select name="office" id="office" style="width: 100%">
+
+                <option label="Ofis Seçin"></option>
+                @foreach (var officeName in @Model.Select(x => x.physicalDeliveryOfficeName).Distinct())
+                {
+                    if (string.IsNullOrEmpty(officeName) != true)
+                    {
+                        <option>@officeName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-md-6 col-lg-3" id="mail">
+            <label class="control-label" for="email">E-Mail</label>
+            <input class="form-control" id="email" name="email" type="text"/>
+        </div>
+    </div>
+
+
+
+    <label> Sadece dahili telefonu olanları göster &nbsp</label><input type="checkbox" id="phoneCheck" name="phoneCheck" checked/>
+    <table class="display dataTable " id="contactTableAjax">
+        <thead>
+        <tr role="row">
+            <th class="sorting">Ad Soyad</th>
+            <th class="sorting" style="max-width: 40px">Dahili Telefon</th>
+            <th class="sorting">Ünvan</th>
+            <th class="sorting">Ofis</th>
+            <th class="sorting">Cep Telefonu</th>
+            <th class="sorting">E-mail</th>
+            <th class="sorting">Ev Telefonu</th>
+            <th class="sorting" style="min-width: 85px">Entegrasyon</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+
+    <script src="~/Scripts/index.js"></script>
+
+    <script>
+        $('div.dataTables_filter input').focus();
+    </script>
+    </body>
+</html>

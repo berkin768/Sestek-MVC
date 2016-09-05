@@ -1,0 +1,112 @@
+.page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle {
+    color: #ddd;
+}
+
+.page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle {
+    padding-top: 14px;
+    padding-bottom: 11px;
+}
+
+.page-footer a {
+    color: #000;
+}
+
+.sidebar-toggler-wrapper {
+    margin-bottom: 10px !important;
+}
+/*h3.page-title {
+    margin: 0;
+    display: inline-block;
+}*/
+h3.page-title.editable a,
+h3.page-title a.editable {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+    h3.page-title.editable a:hover,
+    h3.page-title a.editable:hover {
+        background-color: #ededed;
+    }
+/*div.page-title-toolbar {
+    display: inline-block;
+    float: right;
+}*/
+div.tooltip {
+    z-index: 10051;
+}
+
+div.blockUI.blockOverlay {
+    opacity: 0.2 !important;
+}
+
+.portlet.box.blue > .portlet-title {
+    background-color: #0b67cd !important;
+    border: 1px solid #0b67cd !important;
+}
+
+.progress {
+    background-color: #bab7b7 !important;
+}
+
+    .progress.progress-inline {
+        margin-bottom: 0 !important;
+    }
+/*JTABLE START*/
+.portlet.box.blue {
+    border: 1px solid #2d89ef !important;
+}
+
+div.jtable-main-container > table.jtable {
+    border-right: 1px solid #2d89ef !important;
+}
+
+.jtable-title {
+    display: table;
+    width: 100%;
+}
+
+.jtable-bottom-panel select {
+    color: black !important;
+}
+
+.portlet table.jtable {
+    border: 0 !important;
+}
+
+.portlet div.jtable-main-container {
+    background-color: #2d89ef !important;
+}
+
+.jtable-data-row {
+    cursor: pointer;
+}
+/*JTABLE END */
+/* DROP ZONE */
+.dropzone {
+    min-height: 100px;
+}
+/* DROP ZONE */
+/*todo@ismail -> move related parts to sestek.metronic.css */
+.has-error .form-control button.selectpicker {
+    border-color: #b94a48;
+}
+
+.dashboard-stat.gray {
+    background-color: #ccc;
+}
+
+    .dashboard-stat.gray .more {
+        background-color: #aaa;
+    }
+
+.form-actions.no-margin {
+    margin: 0;
+}
+
+.tabbable-custom .nav-tabs > li > a:hover {
+    cursor: pointer;
+}
+/*# sourceMappingURL=sestek.metronic.css.map */
+/*# sourceMappingURL=sestek.metronic.css.map */

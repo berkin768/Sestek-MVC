@@ -1,0 +1,113 @@
+/* Angular transition animations */
+.shuffle-animation.ng-enter,
+.shuffle-animation.ng-leave {
+    position: relative;
+}
+
+.shuffle-animation.ng-enter {
+    -moz-transition: ease-out all 0.3s 0.4s;
+    -o-transition: ease-out all 0.3s 0.4s;
+    -webkit-transition: ease-out all 0.3s 0.4s;
+    transition: ease-out all 0.3s 0.4s;
+    left: 2em;
+    opacity: 0;
+}
+
+    .shuffle-animation.ng-enter.ng-enter-active {
+        left: 0;
+        opacity: 1;
+    }
+
+.shuffle-animation.ng-leave {
+    -moz-transition: 0.3s ease-out all;
+    -o-transition: 0.3s ease-out all;
+    -webkit-transition: 0.3s ease-out all;
+    transition: 0.3s ease-out all;
+    left: 0;
+    opacity: 1;
+}
+
+    .shuffle-animation.ng-leave.ng-leave-active {
+        left: 2em;
+        opacity: 0;
+    }
+/* This is needed since ui-bootstrap does not use href and cursor is not pointer */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+[ui-view] {
+    position: relative;
+}
+
+    [ui-view].anim-in-setup {
+        position: absolute;
+    }
+
+.modal {
+    z-index: 9996 !important;
+}
+
+.bootbox.modal {
+    z-index: 10050 !important;
+}
+
+.role-edit-dialog .jstree ul li a {
+    font-weight: normal !important;
+    border: none;
+}
+
+.flag-tr {
+    background: url(/App/SestekZero/Images/Flags/tr.png) no-repeat;
+}
+
+    .flag-tr.active {
+        background-position: 0 -37px;
+    }
+
+    .flag-tr:hover {
+        background-position: 0 -37px !important;
+    }
+
+.flag-en {
+    background: url(/App/SestekZero/Images/Flags/en.png) no-repeat;
+}
+
+    .flag-en.active {
+        background-position: 0 -37px;
+    }
+
+    .flag-en:hover {
+        background-position: 0 -37px !important;
+    }
+
+.flag-ru {
+    background: url(/App/SestekZero/Images/Flags/ru.png) no-repeat;
+}
+
+    .flag-ru.active {
+        background-position: 0 -37px;
+    }
+
+    .flag-ru:hover {
+        background-position: 0 -37px !important;
+    }
+
+.flag-ar {
+    background: url(/App/SestekZero/Images/Flags/ar.png) no-repeat;
+}
+
+    .flag-ar.active {
+        background-position: 0 -37px;
+    }
+
+    .flag-ar:hover {
+        background-position: 0 -37px !important;
+    }
+
+.no-left-margin {
+    margin-left: 0 !important;
+}

@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "SESTEK | PhoneDex - Login";
+}
+<!DOCTYPE html>
+<html>
+<head>   
+    <script src="~/Scripts/fontawesome.js"></script>  
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script> 
+    <meta name="viewport" content="width=device-width"/>
+    <title>Login Page</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/SestekZero/metronic-light-custom.css" rel="stylesheet"/>
+    <link href="~/Content/SestekZero/sestek.metronic.css" rel="stylesheet"/>
+    <link href="~/Content/SestekZero/loginPage.css" rel="stylesheet"/>
+    <link href="~/Content/SestekZero/components.css" rel="stylesheet"/>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <SCRIPT type="text/javascript">
+        window.history.forward();
+
+        function noBack() { window.history.forward(); }
+    </SCRIPT>
+
+</head>
+<body class="login">
+    <div style="border-bottom: 2px ridge; background-color: #8C8C8C; width: 361px;" class="logo">
+        <img alt="Logo" src="~/images/sestek.png" style="max-height: 55px; float: left; margin-top: 10px; margin-left: 20px;">
+        <h3 style="color: rgb(215, 215, 215); font-size: 25px; ; text-shadow: 1px 1px 2px #464646, 1px 1px 4px #545454;">PhoneDex</h3>
+    </div>
+
+
+    <div id="content" class="content" style="min-width: 360px; padding: 5%">
+        <!-- BEGIN LOGIN FORM -->   
+            <h3 class="form-title">Hesabınıza Giriş Yapın</h3>
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button>
+                <span>
+                    Kullanıcı Adı Ve Şifre Giriniz
+                </span>
+            </div>
+
+            <div id="usernameField" class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Kullanıcı Adı</label>
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    <input id="usernameBox" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Kullanıcı Adı" name="username">
+                </div>
+                <span id="usernameSpan" for="username" class="help-block" style="display: none">Bu alan gereklidir</span>
+            </div>
+
+            <div id="passwordField" class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    <input id="passwordBox" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Şifre" name="password">
+                </div>
+                <span id="passwordSpan" for="password" class="help-block" style="display: none">Bu alan gereklidir</span>
+            </div>
+
+            <div class="form-actions" style="padding-top: 30%;">
+                <label class="checkbox">
+                    <div class="checker"><span><input type="checkbox" name="rememberBox" id="rememberBox" value="1"></span></div> Beni Hatırla
+                </label>
+                <button name="LoginButton" id="LoginButton" type="submit" class="btn green pull-right">
+                    Devam <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+            </div>
+
+     
+        </div>
+    <script src="~/Scripts/login.js"></script>
+</body>
+
+</html>

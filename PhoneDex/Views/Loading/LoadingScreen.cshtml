@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script>
+        (function () {
+
+            $.post("/Loading/CreateDb",
+                  {}, function () {
+                      location.replace('/');
+                  });
+        })();
+    </script>
+</head>
+<body>
+    <div class="container" style="width: 167%;text-align: center;min-height: 300px;">
+        <img src="/images/loading.gif" style="margin-top: -5%" />
+        <div class="panel panel-info" style="vertical-align: middle; display: inline-block; margin-top: 10%;  margin-left: -20%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lütfen Bekleyiniz...</h3>
+            </div>
+            <div class="panel-body" style="text-align: center; font-weight: bold">
+                Veritabanı ilk kez çalıştırılmak üzere oluşturuluyor...
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
